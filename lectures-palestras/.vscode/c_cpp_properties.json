@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "name": "windows-clang-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:/MinGw/**"
+      ],
+      "defines": [
+        "_DEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "compilerPath": "cl.exe",
+      "intelliSenseMode": "windows-clang-x64",
+      "browse": {
+        "path": [
+          "C:/MinGW"
+        ]
+      },
+      "cStandard": "${default}",
+      "cppStandard": "${default}"
+    }
+  ],
+  "version": 4
+}
