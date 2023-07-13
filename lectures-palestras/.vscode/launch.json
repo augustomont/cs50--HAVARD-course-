@@ -1,7 +1,6 @@
 {
   "version": "0.2.0",
   "configurations": [
-    
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
@@ -9,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/cliente/Desktop/Programação/c/cs50/palestras",
-      "program": "c:/Users/cliente/Desktop/Programação/c/cs50/palestras/build/Debug/outDebug",
+      "cwd": "c:/Users/cliente/Desktop/Programação/c/cs50/lectures-palestras",
+      "program": "c:/Users/cliente/Desktop/Programação/c/cs50/lectures-palestras/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
