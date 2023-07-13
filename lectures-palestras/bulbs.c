@@ -3,32 +3,30 @@
 #include <string.h>
 #include <ctype.h>
 
-const int BITS_IN_BYTE = 8;
+#define BITS_IN_BYTE 8
 
 void print_bulb(int bit);
 
 int main(void)
 {
-    // TODO
     string text = get_string("Message: ");
 
-
-    for(int i = (strlen(text) - 1); i >= 0; i--)
+    for (int i = 0; i < strlen(text); i++)
     {
-        for (int j = 8; j > 0; j--)
+        int byte[BITS_IN_BYTE];
+        int valor = text[i];
+
+        for (int j = 0; j < 8; j++) // save char values
         {
-            int byte = 0;
-            if (text[i] > 1)
-            {
-                byte = text[i] % 2;
-                print_bulb(byte);
-            }
-            else
-            {
-                print_bulb(byte);
-            }
-            text[i] = text[i] / 2;
+            byte[7 - j] = valor % 2;
+            valor = valor / 2;
         }
+
+        for (int j = 0; j < 8; j++) // print char values
+        {
+            print_bulb(byte[j]);
+        }
+
         printf("\n");
     }
 }
