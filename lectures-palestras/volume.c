@@ -1,65 +1,54 @@
-// Modifies the volume of an audio file
-
-#include <stdint.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 
-// Number of bytes in .wav header
-const int HEADER_SIZE = 44;
+#define HEADER_SIZE 44
 
 int main(int argc, char *argv[])
 {
-    // Check command-line arguments
+    
+
     if (argc != 4)
     {
-        printf("Usage: ./volume input.wav output.wav factor\n");
+        printf("Please, enter the input file, output file, and de factor");
         return 1;
     }
 
-    // Open files and determine scaling factor
-    FILE *input = fopen(argv[1], "r");
+    FILE* input = fopen(argv[1], "r");
     if (input == NULL)
     {
-        printf("Could not open file.\n");
+        printf("File input not found!");
         return 1;
     }
 
-    FILE *output = fopen(argv[2], "w");
+    FILE* output = fopen(argv[2], "w");
     if (output == NULL)
     {
-        printf("Could not open file.\n");
+        printf("File output not found!");
         return 1;
     }
 
     float factor = atof(argv[3]);
 
-    // TODO: Copy header from input file to output file
-    uint8_t buffer[HEADER_SIZE];
+    uint8_t headerBuffer[HEADER_SIZE];
+    fread(headerBuffer, sizeof(uint8_t), HEADER_SIZE, input);
+    fwrite(headerBuffer, sizeof(uint8_t), HEADER_SIZE, output);
 
-    uint8_t headerWave = fread(buffer, sizeof(uint8_t), HEADER_SIZE, input);
+for (int i = 0; i < HEADER_SIZE; i++)
+{
+    printf("%i ", headerBuffer[i]);
+}
 
-    printf("%d\n", headerWave);
-    for (int i = 0; i < HEADER_SIZE; i++)
+    int16_t bodyBuffer;
+    while(fread(&bodyBuffer, sizeof(int16_t), 1, input))
     {
-        printf("%d ", buffer[i]);
+        bodyBuffer *= factor;
+        fwrite(&bodyBuffer, sizeof(int16_t), 1, output);
     }
-    printf("\n");
-    // TODO: Read samples from input file and write updated data to output file
-    int16_t num = fwrite(output, sizeof(int16_t), 1, input);
-    /*while(num != EOF)
-    {
-        int i = 0;
-        i++;
-        printf("%d ", buffer[i]);
-    }*/
-    printf("\n");
-    /*while(fwrite(buffer, sizeof(int16_t), 1, input))
-    {
 
-    }
-    printf("\n");*/
 
-    // Close files
+
     fclose(input);
     fclose(output);
+    
 }
